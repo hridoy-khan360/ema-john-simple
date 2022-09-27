@@ -1,30 +1,30 @@
+
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons'
-import './Product.css';
-import { Link } from 'react-router-dom';
+import './Product.css'
 
 const Product = (props) => {
-    const { img, name, seller, price, stock, key } = props.product;
-    return (
-        <div className="product">
-            <div>
-                <img src={img} alt="" />
-            </div>
-            <div>
-                <h4 className="product-name"><Link to={"/product/"+key}>{name}</Link></h4>
-                <br />
-                <p><small>by: {seller}</small></p>
-                <p>${price}</p>
-                <p><small>Only {stock} left in stock - Order soon</small></p>
-                { props.showAddToCart === true && <button 
-                    className="main-button" 
-                    onClick={() => props.handleAddProduct(props.product)}
-                    > 
-                        <FontAwesomeIcon icon={faShoppingCart} /> add to cart
-                    </button>}
-            </div>
+    const {name,img,seller,price,ratings} = props.product;
+const {handleAddToCart} = props;
 
+    return (
+        <div className='products'>
+
+        <img src={img} alt="" srcset="" />
+
+<div className='products-info'>
+
+<h3 className='products-name'>{name}</h3>
+<h5>Price : ${price}</h5>
+<p>Seller : <small>{seller}</small></p>
+<p>Ratings : <small>{ratings}</small></p>
+
+</div>
+
+<button onClick={()=>handleAddToCart(props.product)} className='btn-cart'>Add to Cart
+<FontAwesomeIcon className='ms-2' icon={faShoppingCart}></FontAwesomeIcon>
+</button>
         </div>
     );
 };
